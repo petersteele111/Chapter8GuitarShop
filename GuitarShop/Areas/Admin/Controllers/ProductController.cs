@@ -41,12 +41,14 @@ namespace GuitarShop.Areas.Admin.Controllers
                     .OrderBy(p => p.ProductID).ToList();
             }
 
-            // use ViewBag to pass category data to view
-            ViewBag.Categories = categories;
-            ViewBag.SelectedCategoryName = id;
-
             // bind products to view
-            return View(products);
+            var model = new ProductListViewModel
+            {
+                Categories = categories,
+                Products = products,
+                SelectedCategory = id
+            };
+            return View(model);
         }
 
         [HttpGet]
